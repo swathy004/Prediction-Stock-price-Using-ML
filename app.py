@@ -27,11 +27,11 @@ for file_name in os.listdir(models_dir):
             # Try loading with joblib first, then fallback to pickle
             try:
                 models[model_name] = joblib.load(file_path)
-                st.success(f"{model_name} model loaded successfully using joblib.")
+                # st.success(f"{model_name} model loaded successfully using joblib.")
             except Exception as e1:
                 with open(file_path, "rb") as f:
                     models[model_name] = pickle.load(f)
-                st.success(f"{model_name} model loaded successfully using pickle.")
+                # st.success(f"{model_name} model loaded successfully using pickle.")
         
         except (pickle.UnpicklingError, FileNotFoundError, EOFError, joblib.externals.loky.process_executor.TerminatedWorkerError) as e:
             st.error(f"Failed to load {model_name}: {e}")
